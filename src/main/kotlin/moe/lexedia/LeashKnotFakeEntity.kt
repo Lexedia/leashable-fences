@@ -3,18 +3,13 @@ package moe.lexedia
 import net.minecraft.entity.Entity
 import net.minecraft.entity.EntityType
 import net.minecraft.entity.damage.DamageSource
-import net.minecraft.entity.decoration.LeashKnotEntity
 import net.minecraft.entity.mob.MobEntity
-import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.Items
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.sound.SoundCategory
 import net.minecraft.sound.SoundEvents
-import net.minecraft.util.ActionResult
-import net.minecraft.util.Hand
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
-import net.minecraft.util.math.Vec3d
 
 class LeashKnotFakeEntity(type: EntityType<out LeashKnotFakeEntity>, worldIn: World) : MobEntity(type, worldIn) {
     private val targetPosition = .375

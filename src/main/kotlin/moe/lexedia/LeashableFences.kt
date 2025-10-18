@@ -42,7 +42,7 @@ object LeashableFences : ModInitializer {
     private val pendingKnots = mutableMapOf<UUID, LeashKnotFakeEntity?>()
 
     override fun onInitialize() {
-        logger.info("Leashable fences is initialized!")
+        logger.info("Leashable fences is initialised!")
 
         FabricDefaultAttributeRegistry.register(
             LEASH_KNOT_FAKE_ENTITY_TYPE,
@@ -74,7 +74,6 @@ object LeashableFences : ModInitializer {
                     if (targetKnot != null) {
                         pendingKnots[playerId] = targetKnot
                         world.playSound(null, pos, SoundEvents.ITEM_LEAD_TIED, SoundCategory.BLOCKS, .5f, 1.5f)
-                        logger.info("Selected existing knot at $pos as source.")
                     } else {
                         val newKnot = LeashKnotFakeEntity(LEASH_KNOT_FAKE_ENTITY_TYPE, world)
                         newKnot.setPosition(pos.x + 0.5, pos.y + 0.5 - 1.0 / 8.0, pos.z + 0.5)
@@ -82,21 +81,18 @@ object LeashableFences : ModInitializer {
                         world.spawnEntity(newKnot)
                         pendingKnots[playerId] = newKnot
                         world.playSound(null, pos, SoundEvents.ITEM_LEAD_TIED, SoundCategory.BLOCKS, .5f, 1.5f)
-                        logger.info("Created new knot at $pos as source.")
                     }
                     return@register ActionResult.SUCCESS
                 } else {
                     if (targetKnot != null) {
                         if (sourceKnot == targetKnot) {
                             pendingKnots.remove(playerId)
-                            logger.info("Cancelled knot selection.")
                             return@register ActionResult.SUCCESS
                         }
                         sourceKnot.attachLeash(targetKnot, true)
                         pendingKnots.remove(playerId)
                         if (!player.isCreative) stack.decrement(1)
                         world.playSound(null, pos, SoundEvents.ITEM_LEAD_TIED, SoundCategory.BLOCKS, .5f, 1.5f)
-                        logger.info("Connected knot from ${sourceKnot.blockPos} to existing knot at $pos")
                     } else {
                         val newKnot = LeashKnotFakeEntity(LEASH_KNOT_FAKE_ENTITY_TYPE, world)
                         newKnot.setPosition(pos.x + 0.5, pos.y + 0.5 - 1.0 / 8.0, pos.z + 0.5)
@@ -106,7 +102,6 @@ object LeashableFences : ModInitializer {
                         pendingKnots.remove(playerId)
                         if (!player.isCreative) stack.decrement(1)
                         world.playSound(null, pos, SoundEvents.ITEM_LEAD_TIED, SoundCategory.BLOCKS, .5f, 1.5f)
-                        logger.info("Connected knot from ${sourceKnot.blockPos} to new knot at $pos")
                     }
                     return@register ActionResult.SUCCESS
                 }

@@ -1,0 +1,39 @@
+{
+	"schemaVersion": 1,
+	"id": "leashable-fences",
+	"version": "0.0.1",
+	"name": "Leashable Fences",
+	"description": "A mod that allows you to leash fences together",
+	"authors": [
+		"Lexedia"
+	],
+	"contact": {
+		"homepage": "https://github.com/Lexedia/LeashableFences",
+		"sources": "https://github.com/Lexedia/LeashableFences"
+	},
+	"license": "MIT",
+	"icon": "assets/leashable-fences/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			{
+				"value": "moe.lexedia.LeashableFences",
+				"adapter": "kotlin"
+			}
+		],
+		"client": [
+			{
+				"value": "moe.lexedia.LeashableFencesClient",
+				"adapter": "kotlin"
+			}
+		]
+	},
+	"depends": {
+		"fabricloader": ">=0.17.3",
+		"minecraft": "~1.21.8",
+		"java": ">=21",
+		"fabric-api": "*",
+		"fabric-language-kotlin": "*"
+	},
+	"suggests": {}
+}
